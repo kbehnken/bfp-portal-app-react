@@ -1,68 +1,120 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# bfp-portal
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Customers can:
+  - Log into customer portal
+  - View account summary
+  - View service history
+  - View billing history
+  - Reset personal portal password
 
-### `npm start`
+- Admins can:
+  - Add users (customers and employees)
+  - Edit users (customers and employees)
+  - Add services
+  - Edit services
+  - Delete services
+  - Add equipment
+  - Edit equipment
+  - Delete equipment
+  - Add customer service history
+  - Edit customer service history
+  - Delete customer service history
+  - Add customer billing history
+  - Edit customer billing history
+  - Delete customer billing history
+  - Reset password for all users
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Front-end
 
-### `npm test`
+### Checklist
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- reset.css ==> eric meyers 2.0 reset
+- package.json
+  - "main": "server/index.js"
+  - "proxy": "http://localhost:4000"
 
-### `npm run build`
+### File Structure
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- src/
+  - App.js => class
+  - index.js
+  - App.css
+  - index.css => reset.css
+  - setupProxy.js
+  - Components/
+    - Auth.js
+    - Header.js
+    - Dashboard.js
+    - UserForm.js
+    - ServicesForm.js
+    - EquipmentForm.js
+    - ServiceCallForm.js
+    - InvoiceForm.js
+    - Button.js
+  - redux
+  
+### Dependencies
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- axios ==> make API calls
+- react-redux ==> store state
+- redux-promise-middleware
+- react-router-dom ==> navigate components
+- react-icons
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Back-end
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Checklist
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### File Structure
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- server/
+  - index.js
+  - controllers/
+    - authController.js
+  - middleware
+    - authMiddleware.js
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Dependencies
 
-## Learn More
+- express
+- express-session
+- massive
+- bcryptjs
+- dotenv
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### API Routes
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Get all services: GET `/api/services
+- Get all equipment: GET `/api/equipment
+- Create service: POST `/api/service`
+- -Create equipment: POST `/api/equipment`
+- Edit service: PUT `/api/service/:id` {body: name, description}
+- Edit equipment: PUT `/api/equipment/:id` {body: name, description}
 
-### Code Splitting
+#### Example usage
+```js
+app.put(`/api/service/:id`, (req, res, next) => {
+  const { name, description } = req.body;
+});
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+app.put(`/api/equipment/:id`, (req, res, next) => {
+  const { name, description } = req.body;
+});
+```
 
-### Analyzing the Bundle Size
+- Delete service: DELETE `/api/service/:id`
+- Delete equipment: DELETE `/api/equipment/:id`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### Data
 
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+```js
+const service = {
+    id: Number,
+    name: String,
+    description: String
+}
+```
