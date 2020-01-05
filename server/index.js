@@ -7,6 +7,7 @@ const app = express();
 const authCtrl = require('./controllers/authController');
 const servicesCtrl = require('./controllers/servicesController');
 const equipmentCtrl = require('./controllers/equipmentController');
+const photosCtrl = require('./controllers/photosController');
 const auth = require('./middleware/authMiddleware');
 
 const { SESSION_SECRET, CONNECTION_STRING } = process.env;
@@ -37,6 +38,11 @@ app.get('/api/equipment', auth.usersOnly, equipmentCtrl.getEquipment);
 app.post('/api/equipment', auth.usersOnly, equipmentCtrl.addEquipment);
 // app.put('/api/equipment/:id', auth.usersOnly, equipmentCtrl.editEquipment);
 app.delete('/api/equipment/:id', auth.usersOnly, equipmentCtrl.deleteEquipment);
+
+app.get('/api/photos', auth.usersOnly, photosCtrl.getPhotos);
+app.post('/api/photos', auth.usersOnly, photosCtrl.addPhoto);
+// app.put('/api/photos/:id', auth.usersOnly, photosCtrl.editPhoto);
+app.delete('/api/photos/:id', auth.usersOnly, photosCtrl.deletePhoto);
 
 const PORT = 4000;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
