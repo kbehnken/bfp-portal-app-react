@@ -22,6 +22,7 @@ app.use(
   })
 );
 
+app.post('/api/auth/add-user', authCtrl.addUser);
 app.post('/api/auth/login', authCtrl.login);
 app.post('/api/auth/logout', authCtrl.logout);
 
