@@ -1,5 +1,5 @@
 module.exports = {
-    getServices: async (req, res, net) => {
+    getServices: async (req, res, next) => {
         const db = req.app.get('db');
         const services = await db.get_services([req.session.user.id]);
         return res.status(200).send(services);

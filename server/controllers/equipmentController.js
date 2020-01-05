@@ -1,14 +1,14 @@
 module.exports = {
-    getEquipment: async (req, res, net) => {
+    getEquipment: async (req, res, next) => {
         const db = req.app.get('db');
-        const userequipment = await db.get_equipment([req.session.user.id]);
-        return res.status(200).send(userequipment);
+        const equipment = await db.get_equipment([req.session.user.id]);
+        return res.status(200).send(equipment);
     },
     addEquipment: async (req, res, next) => {
-        const { name, description } = req.body;
+        const { name, description, service_address_id } = req.body;
         const { id } = req.session.user;
         const db = req.app.get('db');
-        const equipment = await db.add_equipment([name, description, id]);
+        const equipment = await db.add_equipment([name, description, service_address_id, id]);
         return res.status(200).send(equipment);
     },
     deleteEquipment: (req, res, next) => {
