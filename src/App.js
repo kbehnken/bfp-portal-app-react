@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-// import Header from './Components/Header';
+import Header from './Components/Header';
 import Auth from './Components/Auth';
 import { HashRouter as Router} from "react-router-dom";
 // import routes from "./routes";
@@ -63,7 +63,7 @@ class App extends Component {
             <Router>
             <div>
               <header className="App-header">
-                {/* <Header logoutFn={this.logout} /> */}
+                <Header logoutFn={this.logout} />
               </header>
               <div className="dashboard-container">
                 <div className="main-container">
