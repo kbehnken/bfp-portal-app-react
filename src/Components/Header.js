@@ -10,7 +10,7 @@ export default function Header(props) {
         <div>
             <header className="App-header">
                 <div>
-                    Beach Family Pools
+                    <img src="/assets/bfp-logo.png" height="75px" alt="Beach Family Pools logo" />
                 </div>
                 <div>
                     Reset Password | <span onClick={props.logoutFn}>Logout</span>
