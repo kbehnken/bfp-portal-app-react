@@ -3,9 +3,9 @@ import React from 'react';
 export default function Auth(props) {
     const { emailAddress, password, handleEmailAddressInputFn, handlePasswordInputFn, loginFn, } = props;
     return (
-        <div className='auth-container'>
+        <div>
             <div>
-                LOGO
+                <img src="/assets/bfp-logo.png" height="150px" alt="Beach Family Pools logo" />
             </div>
             <div>
                 <label>Email Address</label>
@@ -20,7 +20,7 @@ export default function Auth(props) {
                 <input type='password' value={password} onChange={e => handlePasswordInputFn(e.target.value)}></input>
             </div>
             <div>
-                <button className='light-green-button' onClick={loginFn}>
+                <button onClick={loginFn}>
                     Log In
                 </button>
             </div>
