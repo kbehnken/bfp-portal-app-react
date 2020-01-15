@@ -5,10 +5,17 @@ module.exports = {
         return res.status(200).send(equipment);
     },
     addEquipment: async (req, res, next) => {
-        const { name, description, service_address_id } = req.body;
-        const { id } = req.session.user;
+        const { name, description, serviceAddressId } = req.body;
+        const { id } = req.params;
         const db = req.app.get('db');
-        const equipment = await db.add_equipment([name, description, service_address_id, id]);
+        const equipment = await db.add_equipment([name, description, serviceAddressId, id]);
+        return res.status(200).send(equipment);
+    },
+    updateEquipment: async (req, res, next) => {
+        const { name, description, service_address_id } = req.body;
+        const { id } = req.params;
+        const db = req.app.get("db");
+        const equipment = await db.update_equipment([name, description, id, service_address_id]);
         return res.status(200).send(equipment);
     },
     deleteEquipment: (req, res, next) => {
@@ -19,8 +26,7 @@ module.exports = {
             res.status(200).send(equipment)
         })
         .catch(err => {
-            res.status(500).send({errorMessage: "Something went wrong."});  
-            console.log(err);
+            res.status(500).send({errorMessage: "Something went wrong."});
         });
     }
 };

@@ -15,6 +15,9 @@ module.exports = {
         }
         req.session.user = {
             id: user.id,
+            isAdmin: user.is_admin,
+            firstName: user.first_name,
+            lastName: user.last_name,
             emailAddress: user.email_address
         };
         return res.status(200).send(req.session.user);

@@ -1,6 +1,14 @@
+const bcrypt = require("bcryptjs");
+
 module.exports = {
+    getUsers: async (req, res, next) => {
+        const db = req.app.get("db");
+        const allUsers = await db.get_users();
+        return res.status(200).send(allUsers);
+    },
     addUser: async (req, res, next) => {
-        const { is_admin, role, first_name, last_name, phone_number, emailAddress, password } = req.body;
+        const { role, firstName, lastName, phoneNumber, emailAddress, password } = req.body;
+        const isAdmin = (req.body.isAdmin || false);
         const db = req.app.get("db");
         const result = await db.get_user(emailAddress);
         const existingUser = result[0];
@@ -9,18 +17,20 @@ module.exports = {
         }
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
-        const addedUser = await db.add_user(is_admin, role, first_name, last_name, phone_number, emailAddress, hash);
+        const addedUser = await db.add_user(isAdmin, role, firstName, lastName, phoneNumber, emailAddress, hash);
         const user = addedUser[0];
         req.session.user = {
-            id: user.id,
-            emailAddress: user.email_address
+            id: user.id
         };
         return res.status(200).send(req.session.user)
     },
-    
-    getUsers: async (req, res, next) => {
+    updateUser: async (req, res, next) => {
+        const { isAdmin, role, firstName, lastName, phoneNumber, emailAddress, password } = req.body;
+        const { id } = req.params;
         const db = req.app.get("db");
-        const allUsers = await db.get_users();
-        return res.status(200).send(allUsers);
-    }
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(password, salt);
+        const user = await db.update_user([isAdmin, role, firstName, lastName, phoneNumber, emailAddress, hash, id]);
+        return res.status(200).send(user);
+    },
 };

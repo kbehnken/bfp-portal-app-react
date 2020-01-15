@@ -1,18 +1,19 @@
-import React, { Component } from 'react';
-import './App.css';
-import axios from 'axios';
-import Header from './Components/Header';
-import Auth from './Components/Auth';
-import { HashRouter as Router} from "react-router-dom";
-// import routes from "./routes";
+import React, { Component } from "react";
+import "./App.css";
+import axios from "axios";
+import { connect } from "react-redux"
+import { setSessionData } from "./redux/sessionReducer";
+
+import Header from "./Components/Header";
+import Auth from "./Components/Auth";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       user: {},
-      emailAddress: '',
-      password: ''
+      emailAddress: "",
+      password: ""
     };
     this.handleEmailAddressInput = this.handleEmailAddressInput.bind(this);
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
@@ -25,7 +26,7 @@ class App extends Component {
     this.setState( { 
         emailAddress: value
     });
-}
+  }
   handlePasswordInput(value) {
       this.setState( {
           password: value
@@ -33,21 +34,22 @@ class App extends Component {
   }
   updateUser(user) {
     this.setState({
-      user,
+      user
     });
   }
   login() {
     const { emailAddress, password } = this.state;
     axios
-    .post('api/auth/login', {emailAddress, password})
+    .post("api/auth/login", {emailAddress, password})
     .then(user => {
       this.updateUser(user.data);
+      this.props.setSessionData(user.data);
     }) 
     .catch(err => alert(err.response.request.response));
   }
   logout() {
     axios
-    .post('api/auth/logout')
+    .post("api/auth/logout")
     .then(() => {
         this.updateUser({});
     })
@@ -60,28 +62,13 @@ class App extends Component {
       <div>
         {user.emailAddress ?
           (
-            <Router>
             <div>
-              <header className="App-header">
-                <Header logoutFn={this.logout} />
-              </header>
-              <div className="dashboard-container">
-                <div className="main-container">
-                  <main>
-                    {/* {routes} */}
-                  </main>
-                </div>
-              </div>
+              <Header logoutFn={this.logout} />
             </div>
-            </Router>
           ) :
           (
-            <div className='main-container'>
-              <div>
-                <main>
-                  <Auth user={user} emailAddress={emailAddress} password={password} handleEmailAddressInputFn={this.handleEmailAddressInput} handlePasswordInputFn={this.handlePasswordInput} updateUserFn={this.updateUser} loginFn={this.login} />
-                </main>
-              </div>
+            <div className="auth">
+              <Auth user={user} emailAddress={emailAddress} password={password} handleEmailAddressInputFn={this.handleEmailAddressInput} handlePasswordInputFn={this.handlePasswordInput} updateUserFn={this.updateUser} loginFn={this.login} />
             </div>
           )
         }
@@ -89,5 +76,9 @@ class App extends Component {
     );
   }
 }
-
-export default App;
+function mapStateToProps(store) {
+  return {
+      session: store.session
+  }
+}
+export default connect(mapStateToProps, { setSessionData })(App);
