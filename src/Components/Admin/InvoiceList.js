@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
 import { connect } from "react-redux"
-import { requestUserAddressData, removeAddressData } from "../../redux/addressReducer";
+import { requestInvoiceData, removeInvoiceData } from "../../redux/invoiceReducer";
 import Loader from "react-loader-spinner";
 import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
-import Iframe from "react-iframe"
 
-class AdminAddressList extends Component {
+class InvoiceList extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,7 +13,7 @@ class AdminAddressList extends Component {
         this.toggleVisibility = this.toggleVisibility.bind(this);
     }
     componentDidMount(){
-        this.props.requestUserAddressData();
+        this.props.requestInvoiceData();
     }
     toggleVisibility(index) {
         let visible = this.state.visible.slice(0);
@@ -25,7 +23,7 @@ class AdminAddressList extends Component {
         })
     }
     render() {
-        const { loading, addressList } = this.props
+        const { loading, invoiceList } = this.props
         if (loading) {
             return(
                 <div>
@@ -33,17 +31,11 @@ class AdminAddressList extends Component {
                 </div>
             )
         } else {
-            const mappedUserAddresses = addressList.map((item) => {
+            const mappedInvoices = invoiceList.map((item) => {
                 return(
                     <div key={item.id}>
-                        <div className="google-map">
-                            <Iframe url={item.map_url} display="initial" />
-                        </div>
                         <div>
-                        <h1>
-                            {item.street_address}<br />
-                            {item.city}, {item.state} {item.postal_code}
-                        </h1>
+                            {item.service_start} {item.service_end} {item.invoice_number} {item.invoice_amount}
                         </div>
                         <div>
                             <FaPencilAlt className="react-icons" size={20} onClick={() => this.toggleVisibility(item.id)}/>
@@ -54,7 +46,7 @@ class AdminAddressList extends Component {
             })
             return(
                 <div>
-                    {mappedUserAddresses}
+                    {mappedInvoices}
                 </div>
             );
         }
@@ -62,8 +54,8 @@ class AdminAddressList extends Component {
 }
 function mapStateToProps(store) {
     return {
-        addressList: store.address.addressList,
-        loading: store.address.loading
+        invoiceList: store.invoice.invoiceList,
+        loading: store.invoice.loading
     }
 }
-export default connect(mapStateToProps, { requestUserAddressData, removeAddressData })(AdminAddressList);
+export default connect(mapStateToProps, { requestInvoiceData, removeInvoiceData })(InvoiceList);

@@ -10,6 +10,7 @@ const servicesCtrl = require('./controllers/servicesController');
 const equipmentCtrl = require('./controllers/equipmentController');
 const photosCtrl = require('./controllers/photosController');
 const addressesCtrl = require('./controllers/addressesController');
+const callsCtrl = require('./controllers/callsController');
 const invoicesCtrl = require('./controllers/invoicesController');
 const auth = require('./middleware/authMiddleware');
 
@@ -50,11 +51,16 @@ app.post('/api/photos', auth.usersOnly, photosCtrl.addPhoto);
 // app.put('/api/photos/:id', auth.usersOnly, photosCtrl.updatePhoto);
 app.delete('/api/photos/:id', auth.usersOnly, photosCtrl.deletePhoto);
 
-app.get('/api/addresses', auth.usersOnly, addressesCtrl.getAddresses);
-app.get('/api/user-addresses', auth.usersOnly, addressesCtrl.getUserAddresses);
+app.get('/api/addresses', auth.usersOnly, addressesCtrl.getUserAddresses);
+app.get('/api/addresses/:id', auth.usersOnly, addressesCtrl.getAddressesById);
 app.post('/api/address', auth.usersOnly, addressesCtrl.addAddress);
 app.put('/api/address/:id', auth.usersOnly, addressesCtrl.updateAddress);
 app.delete('/api/address/:id', auth.usersOnly, addressesCtrl.deleteAddress);
+
+app.get('/api/calls', auth.usersOnly, callsCtrl.getCalls);
+app.post('/api/call', auth.usersOnly, callsCtrl.addCall);
+app.put('/api/call/:id', auth.usersOnly, callsCtrl.updateCall);
+app.delete('/api/call/:id', auth.usersOnly, callsCtrl.deleteCall);
 
 app.get('/api/invoices', auth.usersOnly, invoicesCtrl.getInvoices);
 app.post('/api/invoice', auth.usersOnly, invoicesCtrl.addInvoice);

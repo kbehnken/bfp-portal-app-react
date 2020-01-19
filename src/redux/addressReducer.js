@@ -8,19 +8,29 @@ const initialState = {
 };
 
 // constants
+const REQUEST_ADDRESS_DATA_BY_CUSTOMER = 'REQUEST_ADDRESS_DATA_BY_CUSTOMER';
 const REQUEST_USER_ADDRESS_DATA = 'REQUEST_USER_ADDRESS_DATA';
 const ADD_ADDRESS_DATA = 'ADD_ADDRESS_DATA';
 const UPDATE_ADDRESS_DATA = 'UPDATE_ADDRESS_DATA';
 const REMOVE_ADDRESS_DATA = 'REMOVE_ADDRESS_DATA';
 
 // action creators
+export function requestAddressDataByCustomer(id) {
+    let data = axios.get(`/api/addresses/${id}`).then(res => res.data)
+    return {
+        type: REQUEST_ADDRESS_DATA_BY_CUSTOMER,
+        payload: data
+    };
+}
+
 export function requestUserAddressData() {
-    let data = axios.get('/api/user-addresses').then(res => res.data)
+    let data = axios.get('/api/addresses').then(res => res.data)
     return {
         type: REQUEST_USER_ADDRESS_DATA,
         payload: data
     };
 }
+
 export function addAddressData(streetAddress, city, state, postalCode, mapUrl) {
     return {
         type: ADD_ADDRESS_DATA,
@@ -33,7 +43,7 @@ export function addAddressData(streetAddress, city, state, postalCode, mapUrl) {
         })
     };
 }
-export function updateEquipmentData(streetAddress, city, state, postalCode, mapUrl, id) {
+export function updateAddressData(streetAddress, city, state, postalCode, mapUrl, id) {
     return {
         type: UPDATE_ADDRESS_DATA,
         payload: axios.put(`/api/address/${id}`, {
@@ -61,6 +71,17 @@ export default function reducer(previousState = initialState, action) {
                 loading: true
             })
         case REQUEST_USER_ADDRESS_DATA + '_FULFILLED':
+            return ({
+                ...previousState,
+                loading: false,
+                addressList: action.payload
+            })
+        case REQUEST_ADDRESS_DATA_BY_CUSTOMER + '_PENDING':
+            return ({
+                ...previousState,
+                loading: true
+            })
+        case REQUEST_ADDRESS_DATA_BY_CUSTOMER + '_FULFILLED':
             console.log(action.payload)
             return ({
                 ...previousState,

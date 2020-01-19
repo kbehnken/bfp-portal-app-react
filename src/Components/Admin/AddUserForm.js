@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-import { FaPlusSquare } from "react-icons/fa";
 import axios from "axios";
-
-// import ServiceAddressesForm from "./ServiceAddressesForm";
-// import Buttons from "./../Buttons";
 
 export default class AddUserForm extends Component {
     constructor(props) {
@@ -38,7 +34,7 @@ export default class AddUserForm extends Component {
             lastName: "",
             phoneNumber: "",
             emailAddress: "",
-            tempPassword: "",
+            password: "",
             serviceAddresses: {}
           });
         })
@@ -50,7 +46,7 @@ export default class AddUserForm extends Component {
             lastName: "",
             phoneNumber: "",
             emailAddress: "",
-            tempPassword: "",
+            password: "",
             serviceAddresses: {}
           });
           alert(err.response.request.response)
@@ -59,12 +55,12 @@ export default class AddUserForm extends Component {
     render() {
         return(
             <div className="form">
-                <div className="is-admin">
+                <div className="float-left">
                     <label>
                         Is Admin? 
                     </label>
                 </div>
-                <div className="is-admin">
+                <div className="float-left">
                     <input type="checkbox" name="isAdmin" onChange={event => this.changeHandler(event.target.name, event.target.checked)} checked={this.state.isAdmin} />
                 </div>
                 <div className="clear-float">
@@ -113,8 +109,14 @@ export default class AddUserForm extends Component {
                 <div>
                     <input type="password" name="tempPassword" onChange={event => this.changeHandler(event.target.name, event.target.value)} value={this.state.tempPassword} />
                 </div>
-                <div>
-                    <FaPlusSquare className="react-icons" size={75} onClick={this.addUser} />
+                <div className="button-container">
+                    <button onClick={() => {this.props.hideSectionFn(0)}}>
+                        Cancel
+                    </button>
+                    <button onClick={() => this.addUser()}>
+                        Add
+                    </button>
+                    {/* { Buttons.js } */}
                 </div>
             </div>
         )

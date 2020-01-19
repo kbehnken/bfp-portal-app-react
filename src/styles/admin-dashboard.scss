@@ -1,0 +1,45 @@
+@import "./colors.scss";
+
+.tile-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+      div {
+        color: #fff;
+        text-align: center;
+        width: 75%;
+        margin: 25px;
+        border-radius: 5px;
+        padding: 10px;
+      }
+      .manage-users-tile {
+        background-color: $dark-orange;
+        &:hover {
+          background-color: $light-orange;
+        }
+      }
+      .manage-services-tile {
+        background-color: $dark-green;
+        &:hover {
+          background-color: $light-green
+        }
+      }
+      .manage-equipment-tile {
+        background-color: $dark-yellow;
+        &:hover {
+          background-color: $light-yellow;
+        }
+      }
+      .manage-service-calls-tile {
+        background-color: $dark-blue;
+        &:hover {
+          background-color: $light-blue;
+        }
+      }
+      .manage-invoices-tile {
+        background-color: $dark-red;
+        &:hover {
+          background-color: $light-red;
+        }
+      }
+  }

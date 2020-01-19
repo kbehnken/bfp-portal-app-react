@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { connect } from "react-redux"
 import { requestUserData } from "./../../redux/userReducer";
 import { FaPencilAlt } from "react-icons/fa";
@@ -54,7 +54,7 @@ class UsersSummary extends Component {
                         {this.state.visible[item.id]
                         ?
                         (<div className="clear-left">
-                            <UpdateUserForm firstName={item.first_name} lastName={item.last_name} phoneNumber={item.phone_number} emailAddress={item.email_address} id={item.id} toggleVisibilityFn={this.toggleVisibility}/>
+                            <UpdateUserForm is_admin={item.is_admin} user_role={item.user_role} firstName={item.first_name} lastName={item.last_name} phoneNumber={item.phone_number} emailAddress={item.email_address} id={item.id} toggleVisibilityFn={this.toggleVisibility}/>
                         </div>)
                         :
                         (null)

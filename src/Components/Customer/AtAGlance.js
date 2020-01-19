@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 // import { Link } from "react-router-dom";
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 import { requestUserAddressData } from "./../../redux/addressReducer";
-import Loader from "react-loader-spinner"
-import Iframe from "react-iframe"
+// import Loader from "react-loader-spinner";
 
 import CustomerNav from "./CustomerNav";
 
@@ -12,42 +11,103 @@ class AtAGlance extends Component {
         this.props.requestUserAddressData();
     }
     render() {
-        const { loading, addressList } = this.props
-        if (loading) {
-            return(
-                <div className="address-list">
-                    <Loader type="Puff" color="#69ccda" height={100} width={100} timeout={30000} />
-                </div>
-            )
-        } else {
-            const mappedUserAddresses = addressList.map((item) => {
-                return (
-                    <div key={item.id}>
-                        <div>
-                            <CustomerNav />
+        const { addressList } = this.props
+        const mappedUserAddresses = addressList.map((item) => {
+            return (
+                <div key={item.user_id}>
+                    <div>
+                        <CustomerNav />
+                    </div>
+                    <div className="list">
+                        <div className="item-card">
+                            <div>
+                                <img src={item.photo_url} width="75%" alt="Swimming pool" />
+                            </div>
+                            <div>
+                                <h1>
+                                    {item.street_address}<br />
+                                    {item.city}, {item.state} {item.postal_code}
+                                </h1>
+                            </div>
                         </div>
-                        <div className="list">
-                            <div className="address-list">
-                                <div className="google-map">
-                                    <Iframe url={item.map_url} max-width="250px" max-height="250px" display="initial" position="relative" />
-                                </div>
-                                <div>
-                                    <h1>
-                                        {item.street_address}<br />
-                                        {item.city}, {item.state} {item.postal_code}
-                                    </h1>
-                                </div>
+                        <div className="summary-container">
+                            <div>
+                                <h2>
+                                    Service Summary
+                                </h2>
+                                <p>
+                                    <label>Plan:</label>
+                                </p>
+                                <p>
+                                    <label>
+                                        Last Service Date:
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        Next Service Date:
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        Last Serviced By:
+                                    </label>
+                                </p>
+                            </div>
+                            <div>
+                                <h2>
+                                    Account Summary
+                                </h2>
+                                <p>
+                                    <label>
+                                        Total Amount Due:
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        Last Billing Date:
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        Next Billing Date:
+                                    </label>
+                                </p>
+                                <p>
+                                    &nbsp; 
+                                </p>
+                            </div>
+                            <div>
+                                <h2>
+                                    Equipment Summary
+                                </h2>
+                                <p>
+                                    <label>
+                                        Pump:
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        Filter Type:
+                                    </label>
+                                </p>
+                                <p>
+                                    &nbsp; 
+                                </p>
+                                <p>
+                                    &nbsp; 
+                                </p>
                             </div>
                         </div>
                     </div>
-                );
-            })
-            return(
-                <div>
-                    {mappedUserAddresses}
                 </div>
             );
-        }
+        })
+        return(
+            <div>
+                {mappedUserAddresses}
+            </div>
+        );
     }
 }
 function mapStateToProps(store) {

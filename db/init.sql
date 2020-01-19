@@ -23,7 +23,7 @@ CREATE TABLE service_addresses
 CREATE TABLE service_calls
 (
   id SERIAL PRIMARY KEY,
-  service_date TIMESTAMP,
+  service_date varchar(100),
   salt varchar(40),
   phosphates varchar(40),
   tds varchar(40),
@@ -39,7 +39,8 @@ CREATE TABLE service_calls
   granular_trichlor varchar(40),
   phosphate_remover varchar(40),
   user_id INTEGER REFERENCES users(id),
-  service_address_id INTEGER REFERENCES service_addresses(id)
+  service_address_id INTEGER REFERENCES service_addresses(id),
+  technican varchar(40)
 );
 
 CREATE TABLE invoices
@@ -52,8 +53,9 @@ CREATE TABLE invoices
   payment_date TIMESTAMP,
   payment_type varchar(40),
   payment_amount INTEGER,
-  invoice_balance INTEGER NOT NULL,
-  invoice_status varchar(40) NOT NULL,
+  invoice_balance INTEGER,
+  invoice_status varchar(40),
+  invoice_url  varchar(70),
   user_id INTEGER REFERENCES users(id),
   service_address_id INTEGER REFERENCES service_addresses(id)
 );
@@ -89,3 +91,46 @@ CREATE TABLE photos
   user_id INTEGER REFERENCES users(id),
   service_call_id INTEGER REFERENCES service_calls(id)
 );
+
+
+insert into invoices (
+service_start, service_end, invoice_number, invoice_amount, payment_date, payment_type, payment_amount, user_id, service_address_id, invoice_url) 
+values(
+'09/19/19',
+'12/13/19',
+1525,
+99.99,
+'01/05/20',
+'Zelle',
+99.99,
+8,
+5,
+'http://images.beachfamilypools.com/invoice-1525-graves.pdf'
+);
+
+select * from invoices;
+
+INSERT INTO service_calls 
+VALUES(
+default,
+'11/14/19',
+'3900',
+'N/A',
+'N/A',
+'30,',
+'15',
+'8.4',
+'240',
+'300',
+'0',
+'0',
+'0',
+0,
+'0',
+'0',
+8,
+5,
+'Jeremy Saffell'
+);
+
+SELECT * FROM service_calls;

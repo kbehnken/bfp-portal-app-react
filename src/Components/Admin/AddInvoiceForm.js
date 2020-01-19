@@ -1,17 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux"
-import { requestUserData } from "./../../redux/userReducer";
-import { requestUserAddressData } from "./../../redux/addressReducer";
+import { requestAddressDataByCustomer } from "./../../redux/addressReducer";
 import { addInvoiceData } from "./../../redux/invoiceReducer";
 import { FaPlusSquare } from "react-icons/fa";
-import Select from "react-select";
+import Select from "react-select-native";
 import Loader from "react-loader-spinner";
 
 class AddInvoiceForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectCustomer: null,
+            selectCustomer: this.props.selectCustomer,
             selectAddress: null,
             serviceStart: "",
             serviceEnd: "",
@@ -25,22 +24,18 @@ class AddInvoiceForm extends Component {
             totalAmountDue: 0
         }
         this.changeHandler = this.changeHandler.bind(this);
-        this.customerHandler = this.customerHandler.bind(this);
         this.addressHandler = this.addressHandler.bind(this);
     }
     componentDidMount(){
-        this.props.requestUserData();
-        this.props.requestUserAddressData();
+        this.props.requestAddressDataByCustomer(this.props.selectCustomer);
     }
+    // componentDidUpdate(){
+    //     this.props.requestAddressDataByCustomer(this.props.selectCustomer);
+    // }
     changeHandler(key, value) {
         this.setState( {
             [key]: value
         });
-    }
-    customerHandler(selectedOption) {
-        this.setState( {
-            selectCustomer: selectedOption
-        })
     }
     addressHandler(selectedOption) {
         this.setState( {
@@ -50,7 +45,6 @@ class AddInvoiceForm extends Component {
     addInvoice() {
         this.props.addInvoiceData(this.state.name, this.state.description)
         this.setState ({
-            selectCustomer: null,
             selectAddress: null,
             serviceStart: "",
             serviceEnd: "",
@@ -65,9 +59,7 @@ class AddInvoiceForm extends Component {
         });
     }
     render() {
-        
-        console.log(this.state.selectCustomer)
-        const { loading, usersList, addressList } = this.props
+        const { loading, addressList, selectCustomer } = this.props
         if (loading) {
             return(
                 <div>
@@ -75,44 +67,20 @@ class AddInvoiceForm extends Component {
                 </div>
             )
         } else {
-            const mappedCustomers = usersList
-            .filter(item => {
-                if(item.role === "Customer") {
-                    return item;
-                }
-                return false;
-            })
-            .map((item) => {
-                return {
-                    value: item.id,
-                    label: item.first_name + " " + item.last_name
-                }
-            })
             console.log(addressList)
             const mappedAddresses = addressList
-            .filter(item => {
-                if(item.user_id === this.state.selectCustomer.value) {
-                    return item;
-                }
-                return false;
-            })
             .map((item) => {
                 return {
-                    value: item.id,
+                    value: item.address_id,
                     label: item.street_address
                 }
             })
+            console.log(mappedAddresses)
             return(
             <div>
                 <h2>
                     Add Invoice
                 </h2>
-                <div>
-                    <label>Customer:</label>
-                </div>
-                <div>
-                    <Select name="selectCustomer" onChange={this.customerHandler} value={this.state.selectCustomer} options={mappedCustomers} />
-                </div>
                 <div>
                     <label>Service Address:</label>
                 </div>
@@ -176,10 +144,8 @@ class AddInvoiceForm extends Component {
 }
 function mapStateToProps(store) {
     return {
-        usersList: store.users.usersList,
         addressList: store.address.addressList,
-        billingHistory: store.invoice.billingHistory,
         loading: store.users.loading
     }
   }
-export default connect(mapStateToProps, { requestUserData, requestUserAddressData, addInvoiceData })(AddInvoiceForm);
+export default connect(mapStateToProps, { requestAddressDataByCustomer, addInvoiceData })(AddInvoiceForm);

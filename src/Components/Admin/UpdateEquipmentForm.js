@@ -36,8 +36,8 @@ class UpdateEquipmentForm extends Component {
                 <div>
                     <input type="text" name="description" onChange={event => this.changeHandler(event.target.name, event.target.value)} value={this.state.description} />
                 </div>
-                <div>
-                    <button onClick={() => {this.props.toggleVisibilityFn(this.props.id)}}>
+                <div className="button-container">
+                    <button onClick={() => {this.props.hideItemFn(this.props.id)}}>
                         Cancel
                     </button>
                     <button onClick={() => {this.props.updateEquipmentData(this.state.name, this.state.description, this.props.id, this.state.service_address_id)}}>

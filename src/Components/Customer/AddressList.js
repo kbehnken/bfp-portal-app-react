@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux"
 import { requestUserAddressData } from "../../redux/addressReducer";
 import Loader from "react-loader-spinner"
-import Iframe from "react-iframe"
 
 class AddressList extends Component {
     componentDidMount(){
@@ -20,20 +19,22 @@ class AddressList extends Component {
         } else {
             const mappedUserAddresses = addressList.map((item) => {
                 return(
-                    <div className="list" key={item.id}>
-                        <div className="google-map">
-                            <Iframe url={item.map_url} display="initial" />
-                        </div>
-                        <div>
-                        <h1>
-                            {item.street_address}<br />
-                            {item.city}, {item.state} {item.postal_code}
-                        </h1>
-                        </div>
-                        <div>
-                            <Link to="at-a-glance">
-                                View More
-                            </Link>
+                    <div className="list" key={item.address_id}>
+                        <div className="item-card">
+                            <div>
+                                <img src={item.photo_url} width="50%" alt="Swimming pool" />
+                            </div>
+                            <div>
+                                <h1>
+                                {item.street_address}<br />
+                                    {item.city}, {item.state} {item.postal_code}
+                                </h1>
+                            </div>
+                            <div>
+                                <Link to="at-a-glance">
+                                    View More
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 );

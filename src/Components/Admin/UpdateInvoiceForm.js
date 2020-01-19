@@ -53,7 +53,9 @@ class UpdateInvoiceForm extends Component {
                 </div>
                 <div>
                     <select name="customer" onChange={event => this.changeHandler(event.target.name, event.target.value)} value={this.state.customer}>
-                        <option>{item.first_name} {item.last_name}</option>
+                        <option>
+                            {item.first_name} {item.last_name}
+                        </option>
                     </select>
                 </div>
                 <div>

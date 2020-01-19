@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import { BrowserRouter as Router} from "react-router-dom";
 import { connect } from "react-redux"
 import { setSessionData } from "./../redux/sessionReducer";
-import { FaUserCircle } from "react-icons/fa";
+// import { FaUserCircle } from "react-icons/fa";
+
+import "./../styles/header.scss";
 
 import AdminRoutes from "./../AdminRoutes";
 import CustomerRoutes from "./../CustomerRoutes";

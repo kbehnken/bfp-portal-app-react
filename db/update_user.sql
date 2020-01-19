@@ -1,6 +1,6 @@
 UPDATE users
 SET is_admin = $1,
-    role = $2,
+    user_role = $2,
     first_name = $3,
     last_name = $4,
     phone_number = $5,

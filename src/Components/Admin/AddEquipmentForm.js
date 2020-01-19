@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 import { addEquipmentData } from "./../../redux/equipmentReducer";
-import { FaPlusSquare } from "react-icons/fa";
 
 class AddEquipmentForm extends Component {
     constructor(props) {
@@ -40,11 +39,16 @@ class AddEquipmentForm extends Component {
                 <div>
                     <input type="text" name="description" onChange={event => this.changeHandler(event.target.name, event.target.value)} value={this.state.description} />
                 </div>
-                <div>
-                    <FaPlusSquare className="react-icons" size={75} onClick={() => this.addEquipment()} />
+                <div className="button-container">
+                    <button onClick={() => {this.props.hideSectionFn(0)}}>
+                        Cancel
+                    </button>
+                    <button onClick={() => this.addEquipment()}>
+                        Add
+                    </button>
+                    {/* { Buttons.js } */}
                 </div>
             </div>
-            
         );
     }
 }

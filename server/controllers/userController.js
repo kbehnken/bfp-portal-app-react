@@ -7,7 +7,7 @@ module.exports = {
         return res.status(200).send(allUsers);
     },
     addUser: async (req, res, next) => {
-        const { role, firstName, lastName, phoneNumber, emailAddress, password } = req.body;
+        const { userRole, firstName, lastName, phoneNumber, emailAddress, password } = req.body;
         const isAdmin = (req.body.isAdmin || false);
         const db = req.app.get("db");
         const result = await db.get_user(emailAddress);
@@ -17,7 +17,7 @@ module.exports = {
         }
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
-        const addedUser = await db.add_user(isAdmin, role, firstName, lastName, phoneNumber, emailAddress, hash);
+        const addedUser = await db.add_user(isAdmin, userRole, firstName, lastName, phoneNumber, emailAddress, hash);
         const user = addedUser[0];
         req.session.user = {
             id: user.id
@@ -25,12 +25,12 @@ module.exports = {
         return res.status(200).send(req.session.user)
     },
     updateUser: async (req, res, next) => {
-        const { isAdmin, role, firstName, lastName, phoneNumber, emailAddress, password } = req.body;
+        const { isAdmin, userRole, firstName, lastName, phoneNumber, emailAddress, password } = req.body;
         const { id } = req.params;
         const db = req.app.get("db");
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
-        const user = await db.update_user([isAdmin, role, firstName, lastName, phoneNumber, emailAddress, hash, id]);
+        const user = await db.update_user([isAdmin, userRole, firstName, lastName, phoneNumber, emailAddress, hash, id]);
         return res.status(200).send(user);
     },
 };

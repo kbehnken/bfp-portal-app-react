@@ -1,0 +1,13 @@
+@import "./colors.scss";
+
+header {
+    height: 150px;
+    width: 85vw;
+    background-color: $white;
+    font-weight: 600;
+    letter-spacing: 2px;
+    padding: 10px;
+    margin: auto;
+    position: relative;
+    z-index: 3;
+}

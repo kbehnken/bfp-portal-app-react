@@ -1,6 +1,6 @@
 import React from "react";
 
-import AddressList from "../Admin/AddressList";
+import AddressList from "./AddressList";
 import Welcome from "./../Welcome"
 
 export default function CustomerDashboard(props) {

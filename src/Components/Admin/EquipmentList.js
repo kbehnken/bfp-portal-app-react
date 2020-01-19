@@ -11,18 +11,26 @@ class EquipmentList extends Component {
     constructor (){
         super()
         this.state = {
-            visible: []
+            visibleItem: []
         }
-        this.toggleVisibility = this.toggleVisibility.bind(this);
+        this.showItem = this.showItem.bind(this);
+        this.hideItem = this.hideItem.bind(this);
     }
     componentDidMount(){
         this.props.requestEquipmentData();
     }
-    toggleVisibility(index) {
-        let visible = this.state.visible.slice(0);
-        visible[index] = !visible[index]
+    showItem(index) {
+        let visibleItem = this.state.visibleItem.slice(0);
+        visibleItem[index] = true
         this.setState( {
-            visible: visible
+            visibleItem: visibleItem
+        })
+    }
+    hideItem(index) {
+        let visibleItem = this.state.visibleItem.slice(0);
+        visibleItem[index] = false
+        this.setState( {
+            visibleItem: visibleItem
         })
     }
     render() {
@@ -42,17 +50,19 @@ class EquipmentList extends Component {
                                 {item.name}
                             </div>
                             <div>
-                                <FaPencilAlt className="react-icons" size={20} onClick={() => this.toggleVisibility(item.id)}/>
+                                <FaPencilAlt className="react-icons" size={20} onClick={() => this.showItem(item.id)} />
                                 <FaTrashAlt className="react-icons" size={20} onClick={() => {removeEquipmentData(item.id)}} />
                             </div>
                         </div>
-                        {this.state.visible[item.id]
-                        ?
-                        (<div className="clear-left">
-                            <UpdateEquipmentForm name={item.name} description={item.description} id={item.id} toggleVisibilityFn={this.toggleVisibility} serviceAddressId={item.service_address_id} />
-                        </div>)
-                        :
-                        (null)
+                        {this.state.visibleItem[item.id]
+                            ?(
+                                <div className="clear-left">
+                                    <UpdateEquipmentForm name={item.name} description={item.description} id={item.id} showItemFn={this.showItem} hideItemFn={this.hideItem} serviceAddressId={item.service_address_id} />
+                                </div>
+                            ):
+                            (
+                                null
+                            )
                         }
                     </div>
                 );

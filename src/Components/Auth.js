@@ -1,38 +1,26 @@
-import React from 'react';
+import React from "react";
+
+import "./../styles/auth.scss";
 
 export default function Auth(props) {
     const { emailAddress, password, handleEmailAddressInputFn, handlePasswordInputFn, loginFn, } = props;
     return (
-        <div>
-            <div className="auth">
+        <div className="auth">
+            <div>
                 <div>
-                    <div>
-                        <img src="/assets/bfp-logo.png" height="250px" alt="Beach Family Pools logo" />
-                    </div>
-                    <div>
-                        <label>
-                            Email Address: 
-                        </label>
-                    </div>
-                    <div>
-                        <input className="auth-input" type='text' value={emailAddress} onChange={e => handleEmailAddressInputFn(e.target.value)}></input>
-                    </div>
-                    <div>
-                        <label>
-                            Password: 
-                        </label>
-                    </div>
-                    <div>
-                        <input className="auth-input" type='password' value={password} onChange={e => handlePasswordInputFn(e.target.value)}></input>
-                    </div>
-                    <div>
-                        <button onClick={loginFn}>
-                            Log In
-                        </button>
-                    </div>
+                    <img src="/assets/bfp-logo.png" width="50%" alt="Beach Family Pools logo"/>
                 </div>
-            </div>
-            <div className="sand">
+                <div>
+                    <input type="text" placeholder="Enter email address" value={emailAddress} onChange={e => handleEmailAddressInputFn(e.target.value)}></input>
+                </div>
+                <div>
+                    <input type="password" placeholder="Enter password" value={password} onChange={e => handlePasswordInputFn(e.target.value)}></input>
+                </div>
+                <div className="button-container">
+                    <button onClick={loginFn}>
+                        Login
+                    </button>
+                </div>
             </div>
         </div>
     )

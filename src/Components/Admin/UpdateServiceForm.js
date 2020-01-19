@@ -31,7 +31,7 @@ class UpdateServiceForm extends Component {
                 <div>
                     <input type="text" name="description" onChange={event => this.changeHandler(event.target.name, event.target.value)} value={this.state.description} />
                 </div>
-                <div>
+                <div className="button-container">
                     <button onClick={() => {this.props.toggleVisibilityFn(this.props.id)}}>
                         Cancel
                     </button>

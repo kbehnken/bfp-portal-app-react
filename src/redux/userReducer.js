@@ -19,12 +19,12 @@ export function requestUserData() {
         payload: data
     };
 }
-export function updateUserData(isAdmin, role, firstName, lastName, phoneNumber, emailAddress, password, id) {
+export function updateUserData(isAdmin, userRole, firstName, lastName, phoneNumber, emailAddress, password, id) {
     return {
         type: UPDATE_USER_DATA,
         payload: axios.put(`/api/user/${id}`, {
             isAdmin,
-            role,
+            userRole,
             firstName,
             lastName,
             phoneNumber,

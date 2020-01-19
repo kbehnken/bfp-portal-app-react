@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import "./App.css";
 import axios from "axios";
 import { connect } from "react-redux"
 import { setSessionData } from "./redux/sessionReducer";
+
+import "./App.css";
+import "./styles/main.scss";
 
 import Header from "./Components/Header";
 import Auth from "./Components/Auth";

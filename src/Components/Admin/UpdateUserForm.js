@@ -10,8 +10,8 @@ class UpdateUserForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isAdmin: this.props.isAdmin,
-            role:  this.props.role,
+            isAdmin: this.props.is_admin,
+            userRole:  this.props.user_role,
             firstName:  this.props.firstName,
             lastName:  this.props.lastName,
             phoneNumber:  this.props.phoneNumber,
@@ -28,13 +28,13 @@ class UpdateUserForm extends Component {
     render() {
         return (
             <div className="form">
-                <div className="is-admin">
+                <div className="float-left">
                     <label>
                         Is Admin?
                     </label>
                 </div>
-                <div className="is-admin">
-                    <input type="checkbox" name="isAdmin" onChange={event => this.changeHandler(event.target.name, event.target.value)} value={this.state.isAdmin} />
+                <div className="float-left">
+                    <input type="checkbox" name="isAdmin" onChange={event => this.changeHandler(event.target.name, event.target.value)} checked={this.state.isAdmin?"checked":""}/>
                 </div>
                 <div className="clear-float">
                     <label>
@@ -42,7 +42,7 @@ class UpdateUserForm extends Component {
                     </label>
                 </div>
                 <div>
-                    <input type="text" name="role" onChange={event => this.changeHandler(event.target.name, event.target.value)} value={this.state.role} />
+                    <input type="text" name="userRole" onChange={event => this.changeHandler(event.target.name, event.target.value)} value={this.state.userRole} />
                 </div>
                 <div>
                     <label>
@@ -58,7 +58,7 @@ class UpdateUserForm extends Component {
                     </label>
                 </div>
                 <div>
-                    <input type="text" name="LastName" onChange={event => this.changeHandler(event.target.name, event.target.value)} value={this.state.lastName} />
+                    <input type="text" name="lastName" onChange={event => this.changeHandler(event.target.name, event.target.value)} value={this.state.lastName} />
                 </div>
                 <div>
                     <label>Phone Number:</label>
@@ -85,11 +85,11 @@ class UpdateUserForm extends Component {
                 <div>
                     <ManageAddresses />
                 </div>
-                <div>
+                <div className="button-container">
                     <button onClick={() => {this.props.toggleVisibilityFn(this.props.id)}}>
                         Cancel
                     </button>
-                    <button onClick={() => {this.props.updateUserData(this.state.isAdmin, this.state.role, this.state.firstName, this.state.lastName, this.state.phoneNumber, this.state.emailAddress, this.state.password, this.props.id, this.state.service_address_id)}}>
+                    <button onClick={() => {this.props.updateUserData(this.state.isAdmin, this.state.userRole, this.state.firstName, this.state.lastName, this.state.phoneNumber, this.state.emailAddress, this.state.password, this.props.id, this.state.service_address_id)}}>
                         Save
                     </button>
                     {/* { Buttons.js } */}

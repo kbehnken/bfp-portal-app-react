@@ -3,7 +3,7 @@ import axios from 'axios'
 // initial state
 
 const initialState = {
-    billingHistory: [],
+    invoiceList: [],
     loading: true
 };
 
@@ -76,7 +76,7 @@ export default function reducer(previousState = initialState, action) {
             return ({
                 ...previousState,
                 loading: false,
-                billingHistory: action.payload
+                invoiceList: action.payload
             })
         case ADD_INVOICE_DATA + '_PENDING':
             return {
@@ -86,7 +86,7 @@ export default function reducer(previousState = initialState, action) {
         case ADD_INVOICE_DATA + '_FULFILLED':
             return {
                 ...previousState,
-                billingHistory: action.payload.data,
+                invoiceList: action.payload.data,
                 loading: false
             };
         case UPDATE_INVOICE_DATA + '_PENDING':
@@ -98,7 +98,7 @@ export default function reducer(previousState = initialState, action) {
             return {
                 ...previousState,
                 loading: false,
-                billingHistory: action.payload.data
+                invoiceList: action.payload.data
             };
         case REMOVE_INVOICE_DATA + '_PENDING':
             return {
@@ -109,7 +109,7 @@ export default function reducer(previousState = initialState, action) {
             return {
                 ...previousState,
                 loading: false,
-                billingHistory: action.payload.data
+                invoiceList: action.payload.data
             };
         default: return (previousState);
     }

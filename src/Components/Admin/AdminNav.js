@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 
+import "./../../styles/nav.scss";
+
 class AdminNav extends Component {
     constructor() {
         super();
@@ -59,27 +61,27 @@ class AdminNav extends Component {
                     <GiHamburgerMenu className="hamburger-icon" size={36} onClick={this.toggleMenu} />
                 </div>
                 <menu className={this.state.menuStatus}>
-                    <div className="link-container">
+                    <div>
                         <Link to="/" style={{ textDecoration: "none", color: "#ffffff" }}>
-                            <div className="react-link">
-                                Dashboard
+                            <div>
+                            Dashboard
                             </div>
                         </Link>
                         <hr />
                         <Link to="manage-users" style={{ textDecoration: "none", color: "#ffffff" }}>
-                            <div className="react-link">
+                            <div>
                                 Users
                             </div>
                         </Link>
                         <hr />
                         <Link to="manage-services" style={{ textDecoration: "none", color: "#ffffff" }}>
-                            <div className="react-link">
+                            <div>
                                 Services
                             </div>
                         </Link>
                         <hr />
                         <Link to="manage-equipment" style={{ textDecoration: "none", color: "#ffffff" }}>
-                            <div className="react-link">
+                            <div>
                                 Equipment
                             </div>
                         </Link>

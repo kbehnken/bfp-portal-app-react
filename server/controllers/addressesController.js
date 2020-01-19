@@ -1,12 +1,13 @@
 module.exports = {
-    getAddresses: async (req, res, next) => {
-        const db = req.app.get('db');
-        const addresses = await db.get_service_addresses();
-        return res.status(200).send(addresses);
-    },
     getUserAddresses: async (req, res, next) => {
         const db = req.app.get('db');
         const userAddresses = await db.get_user_service_addresses([req.session.user.id]);
+        return res.status(200).send(userAddresses);
+    },
+    getAddressesById: async (req, res, next) => {
+        const { id } = req.params;
+        const db = req.app.get('db');
+        const userAddresses = await db.get_user_service_addresses([id]);
         return res.status(200).send(userAddresses);
     },
     addAddress: async (req, res, next) => {
