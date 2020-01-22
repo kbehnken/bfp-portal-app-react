@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 import { requestUserAddressData } from "../../redux/addressReducer";
-import Loader from "react-loader-spinner"
+import Loader from "react-loader-spinner";
 
 class AddressList extends Component {
     componentDidMount(){
         this.props.requestUserAddressData();
     }
     render() {
-        const { loading, addressList } = this.props
+        const { loading, addressList } = this.props;
         if (loading) {
             return(
-                <div>
+                <div className="list">
                     <Loader type="Puff" color="#69ccda" height={100} width={100} timeout={5000} />
                 </div>
             )
@@ -20,18 +20,16 @@ class AddressList extends Component {
             const mappedUserAddresses = addressList.map((item) => {
                 return(
                     <div className="list" key={item.address_id}>
-                        <div className="item-card">
-                            <div>
-                                <img src={item.photo_url} width="50%" alt="Swimming pool" />
+                        <div className="address-card">
+                            <div className="box-1">
+                                <img src={item.photo_url} width="100%" alt="Swimming pool" />
                             </div>
-                            <div>
+                            <div className="box-2">
                                 <h1>
-                                {item.street_address}<br />
+                                    {item.street_address}<br />
                                     {item.city}, {item.state} {item.postal_code}
                                 </h1>
-                            </div>
-                            <div>
-                                <Link to="at-a-glance">
+                            <Link to="at-a-glance" className="react-link">
                                     View More
                                 </Link>
                             </div>

@@ -2,7 +2,7 @@ CREATE TABLE users
 (
   id SERIAL PRIMARY KEY,
   is_admin BOOLEAN,
-  role VARCHAR(40) NOT NULL,
+  user_role VARCHAR(40) NOT NULL,
   first_name VARCHAR(40) NOT NULL,
   last_name VARCHAR(40) NOT NULL,
   phone_number VARCHAR(40),
@@ -17,7 +17,8 @@ CREATE TABLE service_addresses
   city VARCHAR(40) NOT NULL,
   state VARCHAR(40) NOT NULL,
   postal_code VARCHAR(10) NOT NULL,
-  user_id INTEGER REFERENCES users(id)
+  user_id INTEGER REFERENCES users(id),
+  map_url VARCHAR(70)
 );
 
 CREATE TABLE service_calls
@@ -55,9 +56,9 @@ CREATE TABLE invoices
   payment_amount INTEGER,
   invoice_balance INTEGER,
   invoice_status varchar(40),
-  invoice_url  varchar(70),
   user_id INTEGER REFERENCES users(id),
-  service_address_id INTEGER REFERENCES service_addresses(id)
+  service_address_id INTEGER REFERENCES service_addresses(id),
+  invoice_url  varchar(70)
 );
 
 CREATE TABLE services
@@ -79,40 +80,23 @@ CREATE TABLE equipment
   id SERIAL PRIMARY KEY,
   name VARCHAR(70) NOT NULL,
   description TEXT,
-  service_address_id INTEGER REFERENCES service_addresses(id)
+  service_address_id INTEGER REFERENCES service_addresses(id),
+  category VARCHAR(40)
 );
 
 CREATE TABLE photos
 (
   id SERIAL PRIMARY KEY,
-  date_taken TIMESTAMP,
+  date_taken varchar(40),
   category varchar(40),
   photo_url varchar(70),
   user_id INTEGER REFERENCES users(id),
   service_call_id INTEGER REFERENCES service_calls(id)
 );
 
-
-insert into invoices (
-service_start, service_end, invoice_number, invoice_amount, payment_date, payment_type, payment_amount, user_id, service_address_id, invoice_url) 
-values(
-'09/19/19',
-'12/13/19',
-1525,
-99.99,
-'01/05/20',
-'Zelle',
-99.99,
-8,
-5,
-'http://images.beachfamilypools.com/invoice-1525-graves.pdf'
-);
-
-select * from invoices;
-
 INSERT INTO service_calls 
-VALUES(
-default,
+VALUES
+(
 '11/14/19',
 '3900',
 'N/A',
@@ -134,3 +118,34 @@ default,
 );
 
 SELECT * FROM service_calls;
+
+INSERT INTO invoices
+(service_start, service_end, invoice_number, invoice_amount, payment_date, payment_type, payment_amount, user_id, service_address_id, invoice_url) 
+VALUES
+(
+'09/19/19',
+'12/13/19',
+1525,
+99.99,
+'01/05/20',
+'Zelle',
+99.99,
+8,
+5,
+'http://images.beachfamilypools.com/invoice-1525-graves.pdf'
+);
+
+SELECT * FROM invoices;
+
+INSERT INTO photos
+(date_taken, category, photo_url, user_id, service_call_id) 
+VALUES
+(
+'11/14/19',
+null,
+'http://images.beachfamilypools.com/customer_pool1.jpg',
+8,
+1
+);
+
+SELECT * FROM photos;

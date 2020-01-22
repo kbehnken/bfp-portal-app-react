@@ -3,7 +3,6 @@ import axios from "axios";
 import { connect } from "react-redux"
 import { setSessionData } from "./redux/sessionReducer";
 
-import "./App.css";
 import "./styles/main.scss";
 
 import Header from "./Components/Header";
@@ -35,7 +34,7 @@ class App extends Component {
       });
   }
   updateUser(user) {
-    this.setState({
+    this.setState( {
       user
     });
   }

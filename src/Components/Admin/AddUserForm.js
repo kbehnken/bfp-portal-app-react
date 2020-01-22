@@ -54,7 +54,7 @@ export default class AddUserForm extends Component {
     }
     render() {
         return(
-            <div className="form">
+            <form>
                 <div className="float-left">
                     <label>
                         Is Admin? 
@@ -118,7 +118,7 @@ export default class AddUserForm extends Component {
                     </button>
                     {/* { Buttons.js } */}
                 </div>
-            </div>
+            </form>
         )
     }
 }

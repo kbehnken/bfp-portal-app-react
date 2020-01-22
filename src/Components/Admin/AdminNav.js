@@ -87,27 +87,23 @@ class AdminNav extends Component {
                         </Link>
                         <hr />
                         <Link to="manage-service-calls" style={{ textDecoration: "none", color: "#ffffff" }}>
-                            <div className="react-link">
+                            <div>
                                 Service Calls
                             </div>
                         </Link>
                         <hr />
                         <Link to="manage-invoices" style={{ textDecoration: "none", color: "#ffffff" }}>
-                            <div className="react-link">
+                            <div>
                                 Invoices
                             </div>
                         </Link>
                         <hr />
                         <Link to="reset-password" style={{ textDecoration: "none", color: "#ffffff" }}>
-                            <div className="react-link">
+                            <div>
                                 Reset Password
                             </div>
                         </Link>
-                        <hr />
-                        <div className="react-link">
-                            <span className="logout">Logout</span>
-                        </div>
-                    </div>
+                     </div>
                 </menu>
             </div>
         );

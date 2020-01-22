@@ -3,6 +3,10 @@
 header {
     height: 150px;
     width: 85vw;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: $white;
     font-weight: 600;
     letter-spacing: 2px;

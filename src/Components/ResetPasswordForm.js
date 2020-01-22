@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 
-// import Buttons from './Buttons';
+import AdminNav from "./Admin/AdminNav";
 
 export default class ResetPasswordForm extends Component {
 
@@ -21,38 +21,45 @@ export default class ResetPasswordForm extends Component {
     }
     render() {
         return (
-            <div className="form">
-                <h1>
-                    Reset Password
-                </h1>
+            <div>
                 <div>
-                    <label>Old Password:</label>
+                    <AdminNav />
                 </div>
-                <div>
-                    <input type="password" name="oldPassword" onChange={event => this.changeHandler(event.target.name, event.target.value)} value={this.state.oldPassword} />
-                </div>
-                <div>
-                    <label>New Password:</label>
-                </div>
-                <div>
-                    <input type="password" name="newPassword" onChange={event => this.changeHandler(event.target.name, event.target.value)} value={this.state.newPassword} />
-                </div>
-                <div>
-                    <label>Confirm Password:</label>
-                </div>
-                <div>
-                    <input type="password" name="confirmPassword" onChange={event => this.changeHandler(event.target.name, event.target.value)} value={this.state.confirmPassword} />
-                </div>
-                <div>
-                    <Link to="/">
-                        <button>
-                            Cancel
-                        </button>
-                    </Link>
-                    <button>
-                        Save
-                    </button>
-                    {/* { Buttons.js } */}
+                <div className="list">
+                    <h1>
+                        Reset Password
+                    </h1>
+                    <form>
+                        <div>
+                            <label>Old Password:</label>
+                        </div>
+                        <div>
+                            <input type="password" name="oldPassword" onChange={event => this.changeHandler(event.target.name, event.target.value)} value={this.state.oldPassword} />
+                        </div>
+                        <div>
+                            <label>New Password:</label>
+                        </div>
+                        <div>
+                            <input type="password" name="newPassword" onChange={event => this.changeHandler(event.target.name, event.target.value)} value={this.state.newPassword} />
+                        </div>
+                        <div>
+                            <label>Confirm Password:</label>
+                        </div>
+                        <div>
+                            <input type="password" name="confirmPassword" onChange={event => this.changeHandler(event.target.name, event.target.value)} value={this.state.confirmPassword} />
+                        </div>
+                        <div className="button-container">
+                            <button>
+                                <Link to="/" style={{ textDecoration: "none", color: "#ffffff" }}>
+                                    Cancel
+                                </Link>
+                            </button>
+                            <button>
+                                Save
+                            </button>
+                            {/* { Buttons.js } */}
+                        </div>
+                    </form>
                 </div>
             </div>
         )

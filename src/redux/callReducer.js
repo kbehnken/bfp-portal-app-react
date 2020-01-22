@@ -16,7 +16,6 @@ const REMOVE_CALL_DATA = 'REMOVE_CALL_DATA';
 // action creators
 export function requestCallData() {
     let data = axios.get('/api/calls').then(res => res.data)
-    console.log(data)
     return {
         type: REQUEST_CALL_DATA,
         payload: data
@@ -91,7 +90,7 @@ export default function reducer(previousState = initialState, action) {
             return ({
                 ...previousState,
                 loading: false,
-                serviceList: action.payload
+                callList: action.payload
             })
         case ADD_CALL_DATA + '_PENDING':
             return {

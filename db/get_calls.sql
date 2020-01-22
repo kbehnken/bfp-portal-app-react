@@ -22,6 +22,6 @@ u.first_name first_name,
 u.last_name last_name,
 s.street_address street_address
 FROM users u 
-LEFT JOIN service_calls i ON c.user_id = u.id
+LEFT JOIN service_calls c ON c.user_id = u.id
 LEFT JOIN service_addresses s ON s.user_id = u.id
 WHERE u.id = $1;

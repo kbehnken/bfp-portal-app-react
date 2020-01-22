@@ -1,5 +1,28 @@
 @import "./colors.scss";
 
+%display-shared {
+    display: flex;
+    align-items: center;
+}
+
+%padding-border-radius-shared {
+    border-radius: 5px;
+    padding: 10px;
+}
+
+%border-style-shared {
+    border: 2px solid  $aqua;
+}
+
+@mixin reset-heading {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
 $font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
 body {
@@ -15,13 +38,9 @@ main {
     margin: auto;
 }
 
-@mixin reset-heading {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+section {
+    @extend %padding-border-radius-shared;
+    border: 1px solid $aqua;
 }
 
 h1 {
@@ -36,13 +55,7 @@ h2 {
     font-size: large;
 }
 
-section h2 {
-    margin-top: 10px;
-    border: 1px solid $aqua;
-    border-radius: 5px;
-}
-
-input, button, .list, .item-card, .summary-container div {
+input, button, img {
     border-radius: 5px;
 }
 
@@ -51,64 +64,156 @@ input {
     width: 100%;
 }
 
-table {
-    width: 100%;
-    font-size: small;
-    text-align: center;
-    margin: auto;
-    margin-top: 25px;
-    th {
-        font-weight: 600;
-        line-height: normal;
-        background-color: $aqua;
-    }
-    th, td {
-        border: 1px solid $light-gray;
-    }
-}
-
-.list, .link-container, section h2, th, td, .item-card, .summary-container div, .total-container  {
-    padding: 10px;
-}
-
-.button-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    button {
-        width: 25%;
-        height: 45px;
-        background-color: $teal;
-        color: $white;
-        font-size: medium;
-        margin-top: 10px;
-        &:hover {
-          border: 2px solid $teal;
+.table-container {
+    overflow: scroll;
+    table {
+        width: 100%;
+        font-size: small;
+        margin-top: 25px;
+        th {
+            background-color: $aqua;
+            font-weight: 600;
+            line-height: normal;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid $light-gray;
+        }
+        .total-container {
+            // width: 100%;
+            background-color: $light-gray;
+            padding: 10px;
+            border: 1px solid $light-gray;
+            font-weight: 600;
+            font-size: medium;
+            text-align: left;
         }
     }
+}
+
+.list {
+    width: 75%;
+    @extend %border-style-shared;
+    @extend %padding-border-radius-shared;
+    line-height: 36px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.item-card {
+    background-color: $aqua;
+    box-sizing: border-box;
+    @extend %padding-border-radius-shared;
+    @extend %display-shared;
+    justify-content: space-between;
+}
+
+.address-card {
+    display: flex;
+    background-color: $aqua;
+    padding: 10px;
+    div.box-1 {
+        width: 75%;
+    }
+    div.box-2 {
+        width: 25%;
+        text-align: right;
+    }
+    h1 {
+        line-height: normal;
+    }
+}
+
+form, section, .item-card, .filter {
+    margin: 25px;
+}
+
+button, section h2, .logout, .react-link, .react-icons, .hamburger-icon, .tile-container div {
+cursor: pointer;
+}
+
+table, .summary-container h2, .at-a-glance-img {
+    text-align: center;
+}
+
+.chemicals {
+    width: 50%;
+    margin: 0px 25px 0px;
+    float: left;
 }
 
 .welcome {
     padding: 25px 0px 0px 25px;
 }
 
-.summary-container {
+.at-a-glance-img {
+    margin: 25px 0px 25px;
+}
+
+.call-photos {
+    background-color: $light-gray;
+    @extend %padding-border-radius-shared;
     display: flex;
-    align-items: center;
+    justify-content: space-around;
+}
+
+.button-container {
+    @extend %display-shared;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    button {
+        min-width: 20vw;
+        height: 45px;
+        background-color: $teal;
+        color: $white;
+        font-size: medium;
+        margin-top: 10px;
+        &:hover {
+            @extend %border-style-shared;
+        }
+    }
+}
+
+.summary-container {
+    @extend %display-shared;
+    flex-wrap: wrap;
     justify-content: space-around;
     div {
-        width: 28%;
+        @extend %padding-border-radius-shared;
+        height: 250px;
+        width: 225px;
         background-color: $light-gray;
         border: 1px solid $medium-gray;
+        overflow: scroll;
         font-size: small;
+        margin-bottom: 25px;
     }
     h2 {
-        text-align: center;
+        line-height: normal;
+        margin-bottom: 10px;
     }
 }
 
-.total-container {
-    background-color: $light-gray;
-    border: 1px solid $light-gray;
+.react-icons {
+    padding: 0px 0px 0px 10px;
 }
 
+.react-link {
+    color: $dark-gray;
+    text-decoration: none;
+    &:hover {
+        color: $dark-orange;
+    }
+}
+
+.line-height-normal {
+    line-height: normal;
+}
+
+.float-left {
+    float: left;
+}
+  
+.clear-float {
+    clear: both;
+}

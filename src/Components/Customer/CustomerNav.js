@@ -33,7 +33,7 @@ class CustomerNav extends Component {
                     </Link>
                     <Link to="at-a-glance" style={{ textDecoration: "none", color: "#4d4d4d" }}>
                         <div className="react_link">
-                            At A Glance
+                            At-A-Glance
                         </div>
                     </Link>
                     <Link to="view-service-detail" style={{ textDecoration: "none", color: "#4d4d4d" }}>
@@ -52,31 +52,31 @@ class CustomerNav extends Component {
                 </div>
                 <menu className={this.state.menuStatus}>
                     <Link to="/" style={{ textDecoration: "none", color: "#ffffff" }}>
-                        <div className="react-link">
+                        <div>
                             Dashboard
                         </div>
                     </Link>
                     <hr />
                     <Link to="at-a-glance" style={{ textDecoration: "none", color: "#ffffff" }}>
-                        <div className="react-link">
-                            At A Glance
+                        <div>
+                            At-A-Glance
                         </div>
                     </Link>
                     <hr />
                     <Link to="view-service-detail" style={{ textDecoration: "none", color: "#ffffff" }}>
-                        <div className="react-link">
+                        <div>
                             Service Detail
                         </div>
                     </Link>
                     <hr />
                     <Link to="view-invoice-detail" style={{ textDecoration: "none", color: "#ffffff" }}>
-                        <div className="react-link">
+                        <div>
                             Billing Detail
                         </div>
                     </Link>
                     <hr />
                     <Link to="reset-password" style={{ textDecoration: "none", color: "#ffffff" }}>
-                        <div className="react-link">
+                        <div>
                             Reset Password
                         </div>
                     </Link>

@@ -44,7 +44,7 @@ export default class UpdateUserForm extends Component {
     }
     render() {
         return (
-            <div className="form">
+            <form>
                 <h1>
                     Add Service Call
                 </h1>
@@ -219,7 +219,7 @@ export default class UpdateUserForm extends Component {
                 <div>
                     {/* < Buttons /> */}
                 </div>
-            </div>
+            </form>
         )
     }
 }

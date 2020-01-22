@@ -18,7 +18,7 @@ class UpdateServiceForm extends Component {
     }
     render() {
         return(
-            <div className="form">
+            <form>
                 <div>
                     <label>Name:</label>
                 </div>
@@ -40,7 +40,7 @@ class UpdateServiceForm extends Component {
                     </button>
                     {/* { Buttons.js } */}
                 </div>
-            </div>
+            </form>
         );
     }
 }

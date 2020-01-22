@@ -58,7 +58,7 @@ class ViewInvoiceDetail extends Component {
                         {item.invoice_url 
                         ?(
                             <a href={item.invoice_url} target="_blank" rel="noopener noreferrer">
-                                <FaEye className="react-icons" size={20} />
+                                <FaEye className="react-link" size={20} />
                             </a>
                         ):
                         (
@@ -121,11 +121,13 @@ class ViewInvoiceDetail extends Component {
                             </thead>
                             <tbody>
                                 {mappedInvoices}
+                                <tr>
+                                    <td colSpan="9" className="total-container">
+                                        Total Amount Due: ${invoiceTotal - paymentTotal}
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
-                        <div className="total-container">
-                            Total Amount Due: ${invoiceTotal - paymentTotal}
-                        </div>
                     </div>
                 </div>
             </div>
