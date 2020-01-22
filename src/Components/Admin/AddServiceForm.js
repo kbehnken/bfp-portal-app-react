@@ -40,10 +40,10 @@ class AddServiceForm extends Component {
                     <input type="text" name="description" onChange={event => this.changeHandler(event.target.name, event.target.value)} value={this.state.description} />
                 </div>
                 <div className="button-container">
-                    <button onClick={() => {this.props.hideSectionFn(0)}}>
+                    <button type="button" onClick={() => {this.props.hideSectionFn(0)}}>
                         Cancel
                     </button>
-                    <button onClick={() => this.addService()}>
+                    <button type="button" onClick={() => this.addService()}>
                         Add
                     </button>
                     {/* { Buttons.js } */}

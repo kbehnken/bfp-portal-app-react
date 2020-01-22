@@ -110,10 +110,10 @@ export default class AddUserForm extends Component {
                     <input type="password" name="tempPassword" onChange={event => this.changeHandler(event.target.name, event.target.value)} value={this.state.tempPassword} />
                 </div>
                 <div className="button-container">
-                    <button onClick={() => {this.props.hideSectionFn(0)}}>
+                    <button type="button" onClick={() => {this.props.hideSectionFn(0)}}>
                         Cancel
                     </button>
-                    <button onClick={() => this.addUser()}>
+                    <button type="button" onClick={() => this.addUser()}>
                         Add
                     </button>
                     {/* { Buttons.js } */}
