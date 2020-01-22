@@ -27,7 +27,7 @@ class UpdateUserForm extends Component {
     }
     render() {
         return (
-            <form>
+            <div className="form">
                 <div className="float-left">
                     <label>
                         Is Admin?
@@ -94,7 +94,7 @@ class UpdateUserForm extends Component {
                     </button>
                     {/* { Buttons.js } */}
                 </div>
-            </form>
+            </div>
         );
     }
 }

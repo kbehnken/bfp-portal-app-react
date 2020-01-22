@@ -26,7 +26,7 @@ class AddEquipmentForm extends Component {
     }
     render() {
         return (
-            <form>
+            <div classname="form">
                 <div>
                     <label>Name:</label>
                 </div>
@@ -48,7 +48,7 @@ class AddEquipmentForm extends Component {
                     </button>
                     {/* { Buttons.js } */}
                 </div>
-            </form>
+            </div>
         );
     }
 }

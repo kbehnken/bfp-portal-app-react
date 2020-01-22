@@ -26,7 +26,7 @@ class AddServiceForm extends Component {
     }
     render() {
         return(
-            <form>
+            <div className="form">
                 <div>
                     <label>Name:</label>
                 </div>
@@ -48,7 +48,7 @@ class AddServiceForm extends Component {
                     </button>
                     {/* { Buttons.js } */}
                 </div>
-            </form>
+            </div>
         );
     }
 }
