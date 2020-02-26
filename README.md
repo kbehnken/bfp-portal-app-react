@@ -88,10 +88,10 @@
 
 ### API Routes
 
-- Get all services: GET `/api/services
-- Get all equipment: GET `/api/equipment
+- Get all services: GET `/api/services`
+- Get all equipment: GET `/api/equipment`
 - Create service: POST `/api/service`
-- -Create equipment: POST `/api/equipment`
+- Create equipment: POST `/api/equipment`
 - Edit service: PUT `/api/service/:id` {body: name, description}
 - Edit equipment: PUT `/api/equipment/:id` {body: name, description}
 
