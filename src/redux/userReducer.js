@@ -13,7 +13,7 @@ const UPDATE_USER_DATA = 'UPDATE_USER_DATA';
 
 // action creators
 export function requestUserData() {
-    let data = axios.get('/api/users').then(res => res.data)
+    let data = axios.get('/api/v1/users').then(res => res.data)
     return {
         type: REQUEST_USER_DATA,
         payload: data
@@ -22,7 +22,7 @@ export function requestUserData() {
 export function updateUserData(isAdmin, userRole, firstName, lastName, phoneNumber, emailAddress, password, id) {
     return {
         type: UPDATE_USER_DATA,
-        payload: axios.put(`/api/user/${id}`, {
+        payload: axios.put(`/api/v1/user/${id}`, {
             isAdmin,
             userRole,
             firstName,

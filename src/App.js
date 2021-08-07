@@ -42,7 +42,7 @@ class App extends Component {
   login() {
     const { emailAddress, password } = this.state;
     axios
-    .post("api/auth/login", {emailAddress, password})
+    .post("api/v1/auth/login", {emailAddress, password})
     .then(user => {
       this.updateUser(user.data);
       this.props.setSessionData(user.data);
@@ -51,7 +51,7 @@ class App extends Component {
   }
   logout() {
     axios
-    .post("api/auth/logout")
+    .post("api/v1/auth/logout")
     .then(() => {
         this.updateUser({});
     })

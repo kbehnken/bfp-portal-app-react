@@ -25,7 +25,7 @@ export default class AddUserForm extends Component {
     addUser() {
         const { isAdmin, role, firstName, lastName, phoneNumber, emailAddress, tempPassword, serviceAddresses } = this.state;
         axios
-        .post("api/user/add-user", {isAdmin, role, firstName, lastName, phoneNumber, emailAddress, tempPassword, serviceAddresses})
+        .post("api/v1/user/add-user", {isAdmin, role, firstName, lastName, phoneNumber, emailAddress, tempPassword, serviceAddresses})
         .then(() => {
           this.setState( {
             isAdmin: false,

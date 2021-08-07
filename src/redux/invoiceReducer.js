@@ -15,7 +15,7 @@ const REMOVE_INVOICE_DATA = 'REMOVE_INVOICE_DATA';
 
 // action creators
 export function requestInvoiceData() {
-    let data = axios.get('/api/invoices').then(res => res.data)
+    let data = axios.get('/api/v1/invoices').then(res => res.data)
     return {
         type: REQUEST_INVOICE_DATA,
         payload: data
@@ -24,7 +24,7 @@ export function requestInvoiceData() {
 export function addInvoiceData(serviceStart, serviceEnd, invoiceNumber, invoiceAmount, paymentDate, paymentType, paymentAmount, invoiceBalance, invoiceStatus, userId, serviceAddressId) {
     return {
         type: ADD_INVOICE_DATA,
-        payload: axios.post('/api/invoice', {
+        payload: axios.post('/api/v1/invoice', {
             serviceStart,
             serviceEnd,
             invoiceNumber,
@@ -42,7 +42,7 @@ export function addInvoiceData(serviceStart, serviceEnd, invoiceNumber, invoiceA
 export function updateInvoiceData(serviceStart, serviceEnd, invoiceNumber, invoiceAmount, paymentDate, paymentType, paymentAmount, invoiceBalance, invoiceStatus, userId, serviceAddressId, id) {
     return {
         type: UPDATE_INVOICE_DATA,
-        payload: axios.put(`/api/invoice/${id}`, {
+        payload: axios.put(`/api/v1/invoice/${id}`, {
             serviceStart,
             serviceEnd,
             invoiceNumber,
@@ -60,7 +60,7 @@ export function updateInvoiceData(serviceStart, serviceEnd, invoiceNumber, invoi
 export function removeInvoiceData(id) {
     return {
         type: REMOVE_INVOICE_DATA,
-        payload: axios.delete(`/api/invoice/${id}`)
+        payload: axios.delete(`/api/v1/invoice/${id}`)
     };
 }
 

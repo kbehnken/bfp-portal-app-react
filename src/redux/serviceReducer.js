@@ -15,7 +15,7 @@ const REMOVE_SERVICE_DATA = 'REMOVE_SERVICE_DATA';
 
 // action creators
 export function requestServiceData() {
-    let data = axios.get('/api/services').then(res => res.data)
+    let data = axios.get('/api/v1/services').then(res => res.data)
     console.log(data)
     return {
         type: REQUEST_SERVICE_DATA,
@@ -25,7 +25,7 @@ export function requestServiceData() {
 export function addServiceData(name, description) {
     return {
         type: ADD_SERVICE_DATA,
-        payload: axios.post('/api/service', {
+        payload: axios.post('/api/v1/service', {
             name,
             description
         })
@@ -34,7 +34,7 @@ export function addServiceData(name, description) {
 export function updateServiceData(name, description, id) {
     return {
         type: UPDATE_SERVICE_DATA,
-        payload: axios.put(`/api/service?id=${id}`, {
+        payload: axios.put(`/api/v1/service?id=${id}`, {
             name,
             description
         })
@@ -43,7 +43,7 @@ export function updateServiceData(name, description, id) {
 export function removeServiceData(id) {
     return {
         type: REMOVE_SERVICE_DATA,
-        payload: axios.delete(`/api/service/${id}`)
+        payload: axios.delete(`/api/v1/service/${id}`)
     };
 }
 
