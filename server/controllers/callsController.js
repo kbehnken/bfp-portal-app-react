@@ -5,16 +5,16 @@ module.exports = {
         return res.status(200).send(calls);
     },
     addCall: async (req, res, next) => {
-        const { serviceDate, salt, phosphates, tds, filterPsi, chlorine, ph, alkalinity, cya, trichlorShock, sodaAsh, sodiumBicarbonate, tabs, granularTrichlor, phosphateRemover, userId, serviceAddressId, technician } = req.body;
+        const { serviceDate, salt, phosphates, tds, filterPsi, chlorine, ph, alkalinity, cya, trichlorShock, sodaAsh, sodiumBicarbonate, tabs, granularTrichlor, phosphateRemover, userId, serviceAddressId, technician, startTime, endTime } = req.body;
         const { id } = req.params;
         const db = req.app.get("db");
-        const call = await db.add_call([serviceDate, salt, phosphates, tds, filterPsi, chlorine, ph, alkalinity, cya, trichlorShock, sodaAsh, sodiumBicarbonate, tabs, granularTrichlor, phosphateRemover, userId, serviceAddressId, technician, id]);
+        const call = await db.add_service_call([serviceDate, salt, phosphates, tds, filterPsi, chlorine, ph, alkalinity, cya, trichlorShock, sodaAsh, sodiumBicarbonate, tabs, granularTrichlor, phosphateRemover, userId, serviceAddressId, technician, startTime, endTime, id]);
         return res.status(200).send(call);
     },
     updateCall: async (req, res, next) => {
-        const { serviceDate, salt, phosphates, tds, filterPsi, chlorine, ph, alkalinity, cya, trichlorShock, sodaAsh, sodiumBicarbonate, tabs, granularTrichlor, phosphateRemover, userId, serviceAddressId, technician} = req.body;
+        const { serviceDate, salt, phosphates, tds, filterPsi, chlorine, ph, alkalinity, cya, trichlorShock, sodaAsh, sodiumBicarbonate, tabs, granularTrichlor, phosphateRemover, userId, serviceAddressId, technician, startTime, endTime} = req.body;
         const db = req.app.get("db");
-        const call = await db.update_call([serviceDate, salt, phosphates, tds, filterPsi, chlorine, ph, alkalinity, cya, trichlorShock, sodaAsh, sodiumBicarbonate, tabs, granularTrichlor, phosphateRemover, userId, serviceAddressId, technician]);
+        const call = await db.update_service_call([serviceDate, salt, phosphates, tds, filterPsi, chlorine, ph, alkalinity, cya, trichlorShock, sodaAsh, sodiumBicarbonate, tabs, granularTrichlor, phosphateRemover, userId, serviceAddressId, technician, startTime, endTime]);
         return res.status(200).send(call);
     },
     deleteCall: (req, res, next) => {
