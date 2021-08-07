@@ -88,26 +88,26 @@
 
 ### API Routes
 
-- Get all services: GET `/api/services`
-- Get all equipment: GET `/api/equipment`
-- Create service: POST `/api/service`
-- Create equipment: POST `/api/equipment`
-- Edit service: PUT `/api/service/:id` {body: name, description}
-- Edit equipment: PUT `/api/equipment/:id` {body: name, description}
+- Get all services: GET `/api/v1/services`
+- Get all equipment: GET `/api/v1/equipment`
+- Create service: POST `/api/v1/service`
+- Create equipment: POST `/api/v1/equipment`
+- Edit service: PUT `/api/v1/service/:id` {body: name, description}
+- Edit equipment: PUT `/api/v1/equipment/:id` {body: name, description}
 
 #### Example usage
 ```js
-app.put(`/api/service/:id`, (req, res, next) => {
+app.put(`/api/v1/service/:id`, (req, res, next) => {
   const { name, description } = req.body;
 });
 
-app.put(`/api/equipment/:id`, (req, res, next) => {
+app.put(`/api/v1/equipment/:id`, (req, res, next) => {
   const { name, description } = req.body;
 });
 ```
 
-- Delete service: DELETE `/api/service/:id`
-- Delete equipment: DELETE `/api/equipment/:id`
+- Delete service: DELETE `/api/v1/service/:id`
+- Delete equipment: DELETE `/api/v1/equipment/:id`
 
 ### Data
 
