@@ -29,7 +29,7 @@ class AddressList extends Component {
                                     {item.street_address}<br />
                                     {item.city}, {item.state} {item.postal_code}
                                 </h1>
-                            <Link to="at-a-glance" className="react-link">
+                                <Link to="at-a-glance" className="react-link">
                                     View More
                                 </Link>
                             </div>
