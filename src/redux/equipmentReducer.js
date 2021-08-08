@@ -15,7 +15,7 @@ const REMOVE_EQUIPMENT_DATA = 'REMOVE_EQUIPMENT_DATA';
 
 // action creators
 export function requestEquipmentData() {
-    let data = axios.get('/api/v1/equipment').then(res => res.data)
+    let data = axios.get('/api/v1/assets').then(res => res.data)
     return {
         type: REQUEST_EQUIPMENT_DATA,
         payload: data
@@ -24,7 +24,7 @@ export function requestEquipmentData() {
 export function addEquipmentData(name, description) {
     return {
         type: ADD_EQUIPMENT_DATA,
-        payload: axios.post('/api/v1/equipment', {
+        payload: axios.post('/api/v1/assets', {
             name,
             description
         })
@@ -33,7 +33,7 @@ export function addEquipmentData(name, description) {
 export function updateEquipmentData(name, description, id) {
     return {
         type: UPDATE_EQUIPMENT_DATA,
-        payload: axios.put(`/api/v1/equipment/${id}`, {
+        payload: axios.put(`/api/v1/assets/${id}`, {
             name,
             description
         })
@@ -42,7 +42,7 @@ export function updateEquipmentData(name, description, id) {
 export function removeEquipmentData(id) {
     return {
         type: REMOVE_EQUIPMENT_DATA,
-        payload: axios.delete(`/api/v1/equipment/${id}`)
+        payload: axios.delete(`/api/v1/assets/${id}`)
     };
 }
 

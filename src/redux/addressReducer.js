@@ -34,7 +34,7 @@ export function requestUserAddressData() {
 export function addAddressData(streetAddress, city, state, postalCode, mapUrl, photoUrl, latitude, longitude) {
     return ({
         type: ADD_ADDRESS_DATA,
-        payload: axios.post('/api/v1/address', {
+        payload: axios.post('/api/v1/addresses', {
             streetAddress,
             city,
             state,
@@ -49,7 +49,7 @@ export function addAddressData(streetAddress, city, state, postalCode, mapUrl, p
 export function updateAddressData(streetAddress, city, state, postalCode, mapUrl, photoUrl, latitude, longitude, id) {
     return ({
         type: UPDATE_ADDRESS_DATA,
-        payload: axios.put(`/api/v1/address/${id}`, {
+        payload: axios.put(`/api/v1/addresses/${id}`, {
             streetAddress,
             city,
             state,
@@ -64,7 +64,7 @@ export function updateAddressData(streetAddress, city, state, postalCode, mapUrl
 export function removeAddressData(id) {
     return ({
         type: REMOVE_ADDRESS_DATA,
-        payload: axios.delete(`/api/v1/address/${id}`)
+        payload: axios.delete(`/api/v1/addresses/${id}`)
     });
 }
 
